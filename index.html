@@ -2,18 +2,19 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>San Valentín - Edición Humorística 😂</title>
+<title>San Valentín - No hay escapatoria 😈</title>
 <style>
 body {
   text-align: center;
   font-family: 'Comic Sans MS', 'Arial', sans-serif;
   background: linear-gradient(45deg, #ffe6f0, #fff0f5);
-  margin-top: 50px;
+  margin: 0;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  position: relative;
 }
 
 .container {
@@ -24,6 +25,62 @@ body {
   border: 3px dashed #ff69b4;
   max-width: 600px;
   width: 90%;
+  transition: all 0.5s ease;
+  z-index: 10;
+}
+
+.container.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #ff4d88, #ff1a4c);
+  border: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.container.fullscreen h1 {
+  color: white;
+  font-size: 4em;
+  text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+}
+
+.container.fullscreen .subtitle,
+.container.fullscreen .joke-bubble,
+.container.fullscreen .funny-face,
+.container.fullscreen .encouragement {
+  display: none;
+}
+
+.container.fullscreen .buttons {
+  transform: scale(2);
+}
+
+.container.fullscreen .no-button {
+  display: none;
+}
+
+.container.fullscreen .yes-button {
+  background-color: white;
+  color: #ff4d88;
+  font-size: 3em !important;
+  padding: 30px 80px !important;
+  border: 5px solid #ff1a4c;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 h1 {
@@ -50,6 +107,7 @@ h1 {
   gap: 30px;
   flex-wrap: wrap;
   margin-top: 30px;
+  transition: all 0.3s ease;
 }
 
 button {
@@ -64,6 +122,7 @@ button {
   transition: all 0.3s ease;
   box-shadow: 0 5px 0 rgba(0,0,0,0.1);
   position: relative;
+  z-index: 100;
 }
 
 .yes-button {
@@ -89,7 +148,6 @@ button {
   background-color: #d4d4d4;
 }
 
-/* Memes y cosas graciosas */
 .joke-bubble {
   background-color: white;
   border-radius: 20px;
@@ -120,13 +178,6 @@ button {
   50% { transform: translateY(-10px); }
 }
 
-/* Contador del botón No */
-.no-counter {
-  font-size: 0.9em;
-  color: #999;
-  margin-top: 10px;
-}
-
 .encouragement {
   background: #ffeb3b;
   color: #333;
@@ -137,11 +188,22 @@ button {
   margin: 10px;
   transform: rotate(-2deg);
 }
+
+/* Efecto de temblor para el botón No */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.shake {
+  animation: shake 0.2s ease-in-out;
+}
 </style>
 </head>
 
 <body>
-<div class="container">
+<div class="container" id="mainContainer">
   <div class="funny-face">😅🥺😂</div>
   <h1>🫣 ¿Quieres ser mi San Valentín? 🫣</h1>
   <div class="subtitle">
@@ -149,7 +211,7 @@ button {
   </div>
   
   <div id="jokeBox" class="joke-bubble">
-    El botón de "No" está cada vez más chiquito... 👀
+    👀 ¿Segura que quieres decir que no?
   </div>
   
   <div class="buttons">
@@ -157,129 +219,144 @@ button {
     <button class="no-button" onclick="handleNoClick()" id="noButton">No 😅</button>
   </div>
   
-  <div id="counter" class="no-counter">
-    Veces que intentaste decir no: 0
-  </div>
-  
   <div class="encouragement" id="encouragement">
-    ¡Anímate! Prometo portarme bien... o no 😈
+    ¡El amor te espera! 💕
   </div>
 </div>
 
 <script>
 let messageIndex = 0;
 let noClickCount = 0;
-let yesButtonSize = 20; // tamaño inicial en px
+let yesButtonSize = 20;
 
 const messages = [
-  "¿Segura? ¡Qué rápida para decir no! 😱",
-  "Pero... ¿y si te doy chocolates? 🍫",
-  "¿Ni siquiera un 'lo pensaré'? 😭",
-  "Mira que tengo memes muy buenos 🤡",
-  "Vamos, dale una oportunidad al amor... o al menos al clic 🖱️",
-  "Última oportunidad... ¡Estás desaprovechando! 🙈",
-  "Bueno, ya me estoy encogiendo... 😰",
-  "¡YA NO PUEDO ENCOGER MÁS! Ayuda 😂",
-  "Me rindo... pero el otro botón ya es enorme 👀"
+  "¿Segura? 😱",
+  "¿Y si lo piensas? 🍫",
+  "Mira que tengo memes 🤡",
+  "Vamos, anímate 🙈",
+  "El amor llama a tu puerta 🚪",
+  "No me dejes así 😭",
+  "Última oportunidad... 👀",
+  "Te vas a arrepentir 😰",
+  "Mira que el otro botón ya es enorme 👀",
+  "¡YA CASI GANA EL SÍ! 🏆"
 ];
 
 const jokes = [
-  "El botón de 'No' se está escondiendo... 🫣",
-  "Cada clic en 'No' hace más grande el amor... y el botón ❤️",
-  "¡No seas mala! Mira cómo crece el otro botón 😳",
-  "Este botón ya parece un globo a punto de explotar 🎈",
-  "La resistencia es inútil... el amor siempre gana 💪",
-  "Tu dedo debe estar cansado de tanto decir no 🖐️",
-  "El botón del 'Sí' te está mirando fijamente... 👀",
-  "Ya casi es más grande que mi autoestima 😂",
-  "¡Ya ganó! Admítelo, vas a decir que sí 🏆"
+  "¿De verdad quieres seguir diciendo que no? 🤔",
+  "Cada 'No' hace más fuerte el 'Sí' 💪",
+  "La terquedad tiene premio... y es el botón grande 🎁",
+  "Este botón se está cansando de decir 'No' 😴",
+  "El amor es persistente... como este botón ❤️",
+  "Tu dedo debe estar rojo de tanto clic 🖐️",
+  "El botón rosa te está mirando... fijamente 👀",
+  "10 'No' y el botón explota... literal 💥",
+  "¿Hasta dónde crees que puede crecer? 📏",
+  "El final se acerca... y es ROSA 🌸"
 ];
 
 const encouragements = [
-  "¡Anímate! Prometo portarme bien... o no 😈",
-  "El amor es como un meme: mejor si es compartido 💕",
-  "No tengo flores, pero tengo chistes malos 🌸",
-  "Si dices que sí, te cuento un chiste 🤡",
-  "¡Haz clic en el botón grande! El rosa, el bonito ❤️",
-  "El destino (y mi código) quieren que digas que sí ✨",
-  "Vamos, sé valiente... ¡el amor te espera! 🦸‍♂️"
+  "¡Dile que sí al amor! 💕",
+  "No tengas miedo... bueno, un poquito sí 😈",
+  "El botón rosa nunca pierde 🌸",
+  "Haz clic en el botón grande... el bonito ✨",
+  "La resistencia es inútil 🦸‍♂️",
+  "El amor (y mi código) siempre gana 💻",
+  "Solo di que sí y serás libre... o no 😜"
 ];
 
 function handleNoClick() {
   const noButton = document.getElementById('noButton');
   const yesButton = document.getElementById('yesButton');
   const jokeBox = document.getElementById('jokeBox');
-  const counter = document.getElementById('counter');
   const encouragement = document.getElementById('encouragement');
+  const container = document.getElementById('mainContainer');
   
-  // Contador de clicks
   noClickCount++;
-  counter.textContent = `Veces que intentaste decir no: ${noClickCount}`;
   
   // Cambiar el texto del botón No
-  noButton.textContent = messages[messageIndex];
+  noButton.textContent = messages[Math.min(messageIndex, messages.length - 1)];
   messageIndex = (messageIndex + 1) % messages.length;
   
-  // Hacer crecer el botón Sí dramáticamente
-  if (noClickCount <= 8) { // Limitamos el crecimiento para que no sea infinito
-    yesButtonSize = 20 + (noClickCount * 8); // Crece 8px por cada clic
+  // Hacer crecer el botón Sí
+  if (noClickCount < 10) {
+    yesButtonSize = 20 + (noClickCount * 8);
     yesButton.style.fontSize = `${yesButtonSize}px`;
     yesButton.style.padding = `${15 + noClickCount}px ${30 + (noClickCount * 3)}px`;
-  } else {
-    yesButton.style.fontSize = '85px'; // Tamaño máximo divertido
-    yesButton.style.padding = '25px 60px';
-  }
-  
-  // Cambiar el chiste
-  jokeBox.textContent = jokes[Math.floor(Math.random() * jokes.length)];
-  
-  // Cambiar mensaje de ánimo
-  encouragement.textContent = encouragements[Math.floor(Math.random() * encouragements.length)];
-  
-  // Hacer el botón No más pequeño
-  const noCurrentSize = parseFloat(window.getComputedStyle(noButton).fontSize);
-  if (noCurrentSize > 12) {
-    noButton.style.fontSize = `${noCurrentSize * 0.9}px`;
-  }
-  
-  // Efecto divertido - temblor
-  noButton.style.transform = 'rotate(2deg)';
-  setTimeout(() => {
-    noButton.style.transform = 'rotate(-2deg)';
-  }, 100);
-  setTimeout(() => {
-    noButton.style.transform = 'rotate(0deg)';
-  }, 200);
-  
-  // Mensajes especiales según los clicks
-  if (noClickCount === 5) {
-    alert("¡5 veces! Eres más terco que mi ex 😂");
+    
+    // Cambiar el chiste
+    jokeBox.textContent = jokes[Math.floor(Math.random() * jokes.length)];
+    
+    // Cambiar mensaje de ánimo
+    encouragement.textContent = encouragements[Math.floor(Math.random() * encouragements.length)];
+    
+    // Hacer el botón No más pequeño
+    const noCurrentSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+    if (noCurrentSize > 8) {
+      noButton.style.fontSize = `${noCurrentSize * 0.85}px`;
+    }
+    
+    // Efecto de temblor
+    noButton.classList.add('shake');
+    setTimeout(() => {
+      noButton.classList.remove('shake');
+    }, 200);
+    
   } else if (noClickCount === 10) {
-    alert("¡10 veces! Ya estás jugando conmigo... y con el botón 😜");
+    // ¡EN LA DÉCIMA VEZ, EL BOTÓN SÍ ACAPARA TODO!
+    container.classList.add('fullscreen');
+    
+    // Hacer que el botón Sí sea gigante
+    yesButton.style.fontSize = '4em';
+    yesButton.style.padding = '30px 80px';
+    
+    // Hacer invisible el botón No
+    noButton.style.opacity = '0';
+    noButton.style.pointerEvents = 'none';
+    
+    // Mensaje épico
+    jokeBox.textContent = "¡No hay escapatoria! El SÍ ha conquistado el mundo 🌎";
+    
+    // Pequeña animación de celebración
+    for (let i = 0; i < 15; i++) {
+      setTimeout(() => {
+        const emoji = document.createElement('div');
+        emoji.style.position = 'fixed';
+        emoji.style.left = Math.random() * 100 + '%';
+        emoji.style.top = '-10%';
+        emoji.style.fontSize = (Math.random() * 40 + 20) + 'px';
+        emoji.style.animation = 'bounce 2s linear forwards';
+        emoji.innerHTML = ['❤️','💖','💕','🎉','🥳','👑','🏆','💪'][Math.floor(Math.random() * 8)];
+        emoji.style.zIndex = '2000';
+        document.body.appendChild(emoji);
+        
+        setTimeout(() => {
+          emoji.remove();
+        }, 1900);
+      }, i * 100);
+    }
   }
 }
 
 function handleYesClick() {
-  const container = document.querySelector('.container');
+  const container = document.getElementById('mainContainer');
   
-  // Respuesta graciosa y bonita
   container.innerHTML = `
     <div style="animation: bounce 1s">
       <div class="funny-face">🎉🥳💖</div>
-      <h1 style="color: #d63384;">¡LO SABÍA! 💘</h1>
+      <h1 style="color: #d63384;">¡POR FIN! 💘</h1>
       <div style="font-size: 30px; margin: 20px;">🫂</div>
       <div class="joke-bubble" style="font-size: 1.3em;">
-        "¡Era obvio! El botón del 'Sí' siempre gana... 
-        <br>como en las películas de Disney 🏰"
+        "Después de ${noClickCount} intentos de decir que no... 
+        <br>¡El amor siempre gana! 🏆"
       </div>
-      <p style="font-size: 1.5em; margin: 20px;">¡Vamos por unos tacos para celebrar! 🌮</p>
-      <p style="color: #666;">*Inserta aquí una cita romántica pero graciosa*</p>
-      <p>Pd: Te lo dije, el botón creció hasta convencerte 😘</p>
+      <p style="font-size: 1.5em; margin: 20px;">¡Vamos a celebrar! 🎊</p>
+      <p style="color: #666;">El botón gigante siempre cumple su misión 💪</p>
     </div>
   `;
   
-  // Confeti de corazones graciosos
-  for (let i = 0; i < 20; i++) {
+  // Lluvia de emojis
+  for (let i = 0; i < 25; i++) {
     setTimeout(() => {
       const emoji = document.createElement('div');
       emoji.style.position = 'fixed';
@@ -287,25 +364,29 @@ function handleYesClick() {
       emoji.style.top = '-10%';
       emoji.style.fontSize = (Math.random() * 30 + 20) + 'px';
       emoji.style.animation = 'bounce 2s linear forwards';
-      emoji.innerHTML = ['❤️','💖','💕','😂','🥰','🤡','🌮','🍕'][Math.floor(Math.random() * 8)];
+      emoji.innerHTML = ['❤️','💖','💕','😂','🥰','🎉','🎊','✨'][Math.floor(Math.random() * 8)];
       emoji.style.zIndex = '1000';
       document.body.appendChild(emoji);
       
       setTimeout(() => {
         emoji.remove();
-      }, 2000);
+      }, 1900);
     }, i * 100);
   }
 }
 </script>
 
 <style>
-/* Añadimos más estilos divertidos */
+/* Responsive */
 @media (max-width: 768px) {
-  h1 { font-size: 2em; }
-  .buttons { flex-direction: column-reverse; }
-  .yes-button { order: 1; }
-  .no-button { order: 2; }
+  .container.fullscreen .yes-button {
+    font-size: 2em !important;
+    padding: 20px 40px !important;
+  }
+  
+  .container.fullscreen h1 {
+    font-size: 2.5em;
+  }
 }
 </style>
 </body>
