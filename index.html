@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>San Valentín 💘</title>
+<style>
+body {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #ffe6f0;
+  margin-top: 100px;
+}
+
+h1 {
+  color: #d63384;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.yes-button {
+  background-color: #ff4d88;
+  color: white;
+}
+
+.no-button {
+  background-color: #cccccc;
+}
+</style>
+</head>
+
+<body>
+
+<h1>¿Quieres ser mi San Valentín? 💖</h1>
+
+<button class="yes-button" onclick="handleYesClick()">Sí</button>
+<button class="no-button" onclick="handleNoClick()">No</button>
+
+<script>
+let messageIndex = 0;
+
+const messages = [
+  "¿Segura? 😢",
+  "Piénsalo bien 💔",
+  "Mira que soy buen partido 😏",
+  "Última oportunidad 👀",
+  "Ok ya no te dejo elegir 😂"
+];
+
+function handleNoClick() {
+  const noButton = document.querySelector('.no-button');
+  const yesButton = document.querySelector('.yes-button');
+
+  noButton.textContent = messages[messageIndex];
+  messageIndex = (messageIndex + 1) % messages.length;
+
+  const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+  yesButton.style.fontSize = `${currentSize * 1.3}px`;
+}
+
+function handleYesClick() {
+  document.body.innerHTML = "<h1>Sabía que dirías que sí 💘😍</h1>";
+}
+</script>
+
+</body>
+</html>
