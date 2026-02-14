@@ -2,319 +2,311 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>¿Serás mi San Valentín? 💕</title>
+<title>San Valentín - Edición Humorística 😂</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  text-align: center;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  background: linear-gradient(45deg, #ffe6f0, #fff0f5);
+  margin-top: 50px;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Quicksand', sans-serif;
-  background: linear-gradient(145deg, #ffb6c1 0%, #ffc0cb 50%, #ffd1dc 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Corazones flotantes */
-body::before,
-body::after {
-  content: "❤️";
-  position: absolute;
-  font-size: 20px;
-  opacity: 0.3;
-  animation: float 6s infinite ease-in-out;
-}
-
-body::before {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-body::after {
-  top: 70%;
-  right: 10%;
-  animation-delay: 3s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(10deg); }
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-  border-radius: 30px;
-  padding: 40px 30px;
-  box-shadow: 0 20px 40px rgba(214, 51, 132, 0.3),
-              0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+  border: 3px dashed #ff69b4;
   max-width: 600px;
   width: 90%;
-  position: relative;
-  z-index: 10;
-  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 h1 {
-  font-family: 'Dancing Script', cursive;
-  font-size: 3rem;
-  color: #d61c4e;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  color: #d63384;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 0 #ffb6c1;
   margin-bottom: 20px;
-  letter-spacing: 2px;
 }
 
-h1 span {
-  display: inline-block;
-  animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.1); }
-  30% { transform: scale(1.2); }
-  50% { transform: scale(1); }
-}
-
-.message {
-  font-size: 1.2rem;
-  color: #a63c5e;
+.subtitle {
+  font-size: 1.2em;
+  color: #ff4d6d;
   margin-bottom: 30px;
-  font-weight: 500;
-  background: rgba(255, 240, 245, 0.7);
-  padding: 10px 20px;
+  background: #fff0f5;
+  padding: 10px;
   border-radius: 50px;
-  display: inline-block;
+  border: 2px solid #ffb6c1;
 }
 
 .buttons {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 30px;
 }
 
 button {
-  padding: 15px 40px;
-  font-size: 1.5rem;
+  padding: 15px 30px;
+  font-size: 20px;
+  margin: 10px;
   border: none;
-  border-radius: 60px;
+  border-radius: 15px;
   cursor: pointer;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-family: 'Comic Sans MS', 'Arial', sans-serif;
+  font-weight: bold;
   transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 0 rgba(0,0,0,0.1);
   position: relative;
-  overflow: hidden;
 }
 
 .yes-button {
-  background: linear-gradient(135deg, #ff4d8c, #ff1a4c);
+  background-color: #ff4d88;
   color: white;
-  border: 2px solid #fff5f8;
+  border: 2px solid #ff1a4c;
+  transform-origin: center;
 }
 
 .yes-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px #ff4d8c;
-}
-
-.yes-button::before {
-  content: "💘";
-  position: absolute;
-  left: -30px;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: left 0.3s ease;
-}
-
-.yes-button:hover::before {
-  left: 10px;
+  transform: scale(1.05);
+  background-color: #ff3385;
 }
 
 .no-button {
-  background: linear-gradient(135deg, #ffb6c1, #ff99aa);
-  color: #8a4a5c;
-  border: 2px solid white;
-  min-width: 120px;
+  background-color: #e0e0e0;
+  color: #666;
+  border: 2px solid #b3b3b3;
+  transition: all 0.2s ease;
 }
 
 .no-button:hover {
-  background: linear-gradient(135deg, #ffc0cb, #ffa5b9);
-  transform: scale(0.95);
+  background-color: #d4d4d4;
 }
 
-/* Efecto de brillo */
-.glow {
+/* Memes y cosas graciosas */
+.joke-bubble {
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 10px auto;
+  max-width: 300px;
+  border: 2px solid #ffb6c1;
+  position: relative;
+  font-size: 1.1em;
+}
+
+.joke-bubble::before {
+  content: "💭";
   position: absolute;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
+  left: -30px;
+  top: -10px;
+  font-size: 30px;
 }
 
-/* Corazones decorativos */
-.hearts {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+.funny-face {
+  font-size: 50px;
+  margin: 10px;
+  animation: bounce 1s infinite;
 }
 
-.hearts span {
-  position: absolute;
-  font-size: 24px;
-  animation: floatHeart 8s infinite;
-  opacity: 0.6;
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes floatHeart {
-  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+/* Contador del botón No */
+.no-counter {
+  font-size: 0.9em;
+  color: #999;
+  margin-top: 10px;
 }
 
-.hearts span:nth-child(1) { left: 5%; animation-duration: 7s; }
-.hearts span:nth-child(2) { left: 20%; animation-duration: 9s; animation-delay: 1s; }
-.hearts span:nth-child(3) { left: 40%; animation-duration: 8s; animation-delay: 2s; }
-.hearts span:nth-child(4) { left: 60%; animation-duration: 10s; animation-delay: 0.5s; }
-.hearts span:nth-child(5) { left: 80%; animation-duration: 7.5s; animation-delay: 1.5s; }
-.hearts span:nth-child(6) { left: 95%; animation-duration: 8.5s; animation-delay: 2.5s; }
-
-/* Mensaje final */
-.final-message {
-  font-family: 'Dancing Script', cursive;
-  font-size: 4rem;
-  color: #d61c4e;
-  text-shadow: 3px 3px 6px rgba(255, 255, 255, 0.9);
-  animation: fadeIn 2s ease;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(5px);
-  border-radius: 40px;
-  border: 2px solid white;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
+.encouragement {
+  background: #ffeb3b;
+  color: #333;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10px;
+  transform: rotate(-2deg);
 }
 </style>
 </head>
+
 <body>
-
-<div class="hearts">
-  <span>❤️</span>
-  <span>💖</span>
-  <span>💕</span>
-  <span>💗</span>
-  <span>💓</span>
-  <span>💘</span>
-</div>
-
-<div class="container" id="mainContainer">
-  <h1>¿Quieres ser mi <span>San Valentín</span>? 💕</h1>
-  <div class="message">Mi corazón late solo por ti...</div>
+<div class="container">
+  <div class="funny-face">😅🥺😂</div>
+  <h1>🫣 ¿Quieres ser mi San Valentín? 🫣</h1>
+  <div class="subtitle">
+    *No te preocupes, no muerdo... mucho* 😬
+  </div>
+  
+  <div id="jokeBox" class="joke-bubble">
+    El botón de "No" está cada vez más chiquito... 👀
+  </div>
   
   <div class="buttons">
-    <button class="yes-button" onclick="handleYesClick()">Sí</button>
-    <button class="no-button" onclick="handleNoClick()">No</button>
+    <button class="yes-button" onclick="handleYesClick()" id="yesButton">¡Sí, claro que sí! 💖</button>
+    <button class="no-button" onclick="handleNoClick()" id="noButton">No 😅</button>
+  </div>
+  
+  <div id="counter" class="no-counter">
+    Veces que intentaste decir no: 0
+  </div>
+  
+  <div class="encouragement" id="encouragement">
+    ¡Anímate! Prometo portarme bien... o no 😈
   </div>
 </div>
 
 <script>
 let messageIndex = 0;
+let noClickCount = 0;
+let yesButtonSize = 20; // tamaño inicial en px
 
 const messages = [
-  "¿Segura? 💕",
-  "Piénsalo bien... 💗",
-  "Seríamos tan felices 💖",
-  "Mira que sin ti me muero 💘",
-  "¿Y si le das otra oportunidad? 💝",
-  "Tu sonrisa es mi debilidad 💓",
-  "Bueno... ¡ya no acepto negativas! 💞"
+  "¿Segura? ¡Qué rápida para decir no! 😱",
+  "Pero... ¿y si te doy chocolates? 🍫",
+  "¿Ni siquiera un 'lo pensaré'? 😭",
+  "Mira que tengo memes muy buenos 🤡",
+  "Vamos, dale una oportunidad al amor... o al menos al clic 🖱️",
+  "Última oportunidad... ¡Estás desaprovechando! 🙈",
+  "Bueno, ya me estoy encogiendo... 😰",
+  "¡YA NO PUEDO ENCOGER MÁS! Ayuda 😂",
+  "Me rindo... pero el otro botón ya es enorme 👀"
+];
+
+const jokes = [
+  "El botón de 'No' se está escondiendo... 🫣",
+  "Cada clic en 'No' hace más grande el amor... y el botón ❤️",
+  "¡No seas mala! Mira cómo crece el otro botón 😳",
+  "Este botón ya parece un globo a punto de explotar 🎈",
+  "La resistencia es inútil... el amor siempre gana 💪",
+  "Tu dedo debe estar cansado de tanto decir no 🖐️",
+  "El botón del 'Sí' te está mirando fijamente... 👀",
+  "Ya casi es más grande que mi autoestima 😂",
+  "¡Ya ganó! Admítelo, vas a decir que sí 🏆"
+];
+
+const encouragements = [
+  "¡Anímate! Prometo portarme bien... o no 😈",
+  "El amor es como un meme: mejor si es compartido 💕",
+  "No tengo flores, pero tengo chistes malos 🌸",
+  "Si dices que sí, te cuento un chiste 🤡",
+  "¡Haz clic en el botón grande! El rosa, el bonito ❤️",
+  "El destino (y mi código) quieren que digas que sí ✨",
+  "Vamos, sé valiente... ¡el amor te espera! 🦸‍♂️"
 ];
 
 function handleNoClick() {
-  const noButton = document.querySelector('.no-button');
-  const yesButton = document.querySelector('.yes-button');
-  const message = document.querySelector('.message');
+  const noButton = document.getElementById('noButton');
+  const yesButton = document.getElementById('yesButton');
+  const jokeBox = document.getElementById('jokeBox');
+  const counter = document.getElementById('counter');
+  const encouragement = document.getElementById('encouragement');
   
-  // Cambiar el mensaje del botón "No"
+  // Contador de clicks
+  noClickCount++;
+  counter.textContent = `Veces que intentaste decir no: ${noClickCount}`;
+  
+  // Cambiar el texto del botón No
   noButton.textContent = messages[messageIndex];
   messageIndex = (messageIndex + 1) % messages.length;
   
-  // Hacer el botón "Sí" más grande y más hermoso
-  const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
-  yesButton.style.fontSize = `${currentSize * 1.2}px`;
-  yesButton.style.padding = `${15 * (currentSize/20)}px ${40 * (currentSize/20)}px`;
+  // Hacer crecer el botón Sí dramáticamente
+  if (noClickCount <= 8) { // Limitamos el crecimiento para que no sea infinito
+    yesButtonSize = 20 + (noClickCount * 8); // Crece 8px por cada clic
+    yesButton.style.fontSize = `${yesButtonSize}px`;
+    yesButton.style.padding = `${15 + noClickCount}px ${30 + (noClickCount * 3)}px`;
+  } else {
+    yesButton.style.fontSize = '85px'; // Tamaño máximo divertido
+    yesButton.style.padding = '25px 60px';
+  }
   
-  // Cambiar el mensaje romántico
-  const romanticMessages = [
-    "Cada latido es para ti... 💓",
-    "Eres la dueña de mis sueños ✨",
-    "Mi amor por ti crece 💝",
-    "Juntos seríamos el mejor cuento 💕",
-    "Eres perfecta para mí 💖"
-  ];
+  // Cambiar el chiste
+  jokeBox.textContent = jokes[Math.floor(Math.random() * jokes.length)];
   
-  message.textContent = romanticMessages[Math.floor(Math.random() * romanticMessages.length)];
+  // Cambiar mensaje de ánimo
+  encouragement.textContent = encouragements[Math.floor(Math.random() * encouragements.length)];
   
-  // Añadir corazones voladores
-  const heart = document.createElement('span');
-  heart.innerHTML = '❤️';
-  heart.style.position = 'fixed';
-  heart.style.left = Math.random() * 100 + '%';
-  heart.style.top = '100%';
-  heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-  heart.style.animation = 'floatHeart 3s linear forwards';
-  heart.style.zIndex = '1000';
-  document.body.appendChild(heart);
+  // Hacer el botón No más pequeño
+  const noCurrentSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+  if (noCurrentSize > 12) {
+    noButton.style.fontSize = `${noCurrentSize * 0.9}px`;
+  }
   
+  // Efecto divertido - temblor
+  noButton.style.transform = 'rotate(2deg)';
   setTimeout(() => {
-    heart.remove();
-  }, 3000);
+    noButton.style.transform = 'rotate(-2deg)';
+  }, 100);
+  setTimeout(() => {
+    noButton.style.transform = 'rotate(0deg)';
+  }, 200);
+  
+  // Mensajes especiales según los clicks
+  if (noClickCount === 5) {
+    alert("¡5 veces! Eres más terco que mi ex 😂");
+  } else if (noClickCount === 10) {
+    alert("¡10 veces! Ya estás jugando conmigo... y con el botón 😜");
+  }
 }
 
 function handleYesClick() {
-  const container = document.getElementById('mainContainer');
-  container.innerHTML = "<h1 class='final-message'>Sabía que dirías que sí ❤️<br>Te amaré por siempre 💘</h1>";
+  const container = document.querySelector('.container');
   
-  // Lluvia de corazones
-  for(let i = 0; i < 30; i++) {
+  // Respuesta graciosa y bonita
+  container.innerHTML = `
+    <div style="animation: bounce 1s">
+      <div class="funny-face">🎉🥳💖</div>
+      <h1 style="color: #d63384;">¡LO SABÍA! 💘</h1>
+      <div style="font-size: 30px; margin: 20px;">🫂</div>
+      <div class="joke-bubble" style="font-size: 1.3em;">
+        "¡Era obvio! El botón del 'Sí' siempre gana... 
+        <br>como en las películas de Disney 🏰"
+      </div>
+      <p style="font-size: 1.5em; margin: 20px;">¡Vamos por unos tacos para celebrar! 🌮</p>
+      <p style="color: #666;">*Inserta aquí una cita romántica pero graciosa*</p>
+      <p>Pd: Te lo dije, el botón creció hasta convencerte 😘</p>
+    </div>
+  `;
+  
+  // Confeti de corazones graciosos
+  for (let i = 0; i < 20; i++) {
     setTimeout(() => {
-      const heart = document.createElement('span');
-      heart.innerHTML = ['❤️','💖','💕','💗','💓','💘','💝'][Math.floor(Math.random() * 7)];
-      heart.style.position = 'fixed';
-      heart.style.left = Math.random() * 100 + '%';
-      heart.style.top = '-10%';
-      heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
-      heart.style.animation = 'floatHeart 4s linear forwards';
-      heart.style.zIndex = '1000';
-      document.body.appendChild(heart);
+      const emoji = document.createElement('div');
+      emoji.style.position = 'fixed';
+      emoji.style.left = Math.random() * 100 + '%';
+      emoji.style.top = '-10%';
+      emoji.style.fontSize = (Math.random() * 30 + 20) + 'px';
+      emoji.style.animation = 'bounce 2s linear forwards';
+      emoji.innerHTML = ['❤️','💖','💕','😂','🥰','🤡','🌮','🍕'][Math.floor(Math.random() * 8)];
+      emoji.style.zIndex = '1000';
+      document.body.appendChild(emoji);
       
       setTimeout(() => {
-        heart.remove();
-      }, 4000);
+        emoji.remove();
+      }, 2000);
     }, i * 100);
   }
 }
 </script>
 
+<style>
+/* Añadimos más estilos divertidos */
+@media (max-width: 768px) {
+  h1 { font-size: 2em; }
+  .buttons { flex-direction: column-reverse; }
+  .yes-button { order: 1; }
+  .no-button { order: 2; }
+}
+</style>
 </body>
 </html>
